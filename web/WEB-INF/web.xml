@@ -4,8 +4,16 @@
         <servlet-name>HelloServlet</servlet-name>
         <servlet-class>controller.HelloServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TestDBServlet</servlet-name>
+        <servlet-class>controller.TestDBServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HelloServlet</servlet-name>
         <url-pattern>/HelloServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestDBServlet</servlet-name>
+        <url-pattern>/TestDBServlet</url-pattern>
     </servlet-mapping>
 </web-app>
