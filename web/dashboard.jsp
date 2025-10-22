@@ -1,0 +1,24 @@
+<%-- 
+    Document   : dashboard
+    Created on : Oct 22, 2025, 9:19:18 AM
+    Author     : ADMIN
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.User" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <!--get data by session-->
+        <%
+            User user = (User) session.getAttribute("user");
+        %>
+        <!--display-->
+        <h1>Welcome, <%=user.getUsername()%></h1>
+        <h3>Role: <%=user.getRole()%></h3>
+    </body>
+</html>
