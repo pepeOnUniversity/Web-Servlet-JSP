@@ -40,7 +40,7 @@ public class RegisterServlet extends HttpServlet {
         if(username == null || username.trim().isEmpty() || password == null ||
                 password.trim().isEmpty()){
             request.setAttribute("error", "Username or password must not empty");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher("errorRegister.jsp").forward(request, response);
             return;
         }
         
