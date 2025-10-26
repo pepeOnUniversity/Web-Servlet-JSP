@@ -10,9 +10,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 import model.Product;
+import model.User;
 
 /**
  *
@@ -35,13 +37,23 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(false);
+        User user = (session == null) ? null : (User) session.getAttribute("user");
+
         String action = request.getParameter("action");
+        if (action == null) {
+            action = "list";
+        }
+
+        // Nếu action nhạy cảm mà user không phải admin -> 403
+        if ((action.equals("new") || action.equals("edit") || action.equals("delete"))
+                && (user == null || !"ADMIN".equalsIgnoreCase(user.getRole()))) {
+            response.sendRedirect(request.getContextPath() + "/403.jsp");
+            return;
+        }
 
         //try catch
         try {
-            if (action == null) {
-                action = "list";
-            }
             switch (action) {
                 //add new a product by form
                 case "add":
