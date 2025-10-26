@@ -36,6 +36,7 @@
         <a href="ProductServlet?action=list">Quản lí danh sách sản phẩm</a><br>
         <% } else {%>
         <h2>You only see your information</h2>
+        <a href="ProductServlet?action=list">Xem danh sách sản phẩm</a>
         <% } %>
 
         <a href="LogoutServlet">
