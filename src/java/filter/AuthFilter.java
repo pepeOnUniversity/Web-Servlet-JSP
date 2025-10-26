@@ -31,7 +31,8 @@ public class AuthFilter implements Filter {
 
         // Nếu chưa login và cố truy cập trang bảo mật -> redirect login
         boolean isLoginRequest = uri.endsWith("login.jsp") || uri.endsWith("LoginServlet");
-        if (user == null && !isLoginRequest) {
+        boolean isRegisterRequest = uri.endsWith("register.jsp") || uri.endsWith("RegisterServlet");
+        if (user == null && !isLoginRequest && !isRegisterRequest) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
